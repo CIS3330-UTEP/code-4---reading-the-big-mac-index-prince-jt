@@ -2,13 +2,28 @@ import csv
 import pandas as pd
 big_mac_file = './big-mac-full-index.csv'
 
+
+
+#print(df)
+#First 2 are queries
 def get_big_mac_price_by_year(year,country_code):
-    pass # Remove this line and code your function
+    #date format: yyyy-mm-dd
+    year = 2018
+    df = pd.read_csv('./big-mac-full-index.csv')
+    query_text = f"((date >= '{year}-01-01' and date <= '{year}-12-31
+    sub_df = df.query(query_text)
+    print(sub_df)
+    
+    
 
 def get_big_mac_price_by_country(country_code):
-    pass # Remove this line and code your function
+    print(df['dollar_price'])
+    query_2 = f"(iso_a3 == df['dollar_price'])
+    c_price = df.query(query)
 
+#These two require indexes
 def get_the_cheapest_big_mac_price_by_year(year):
+    df.sort_index(axis=1).to_csv('sorted_report.csv', index = False)
     pass # Remove this line and code your function
 
 def get_the_most_expensive_big_mac_price_by_year(year):
