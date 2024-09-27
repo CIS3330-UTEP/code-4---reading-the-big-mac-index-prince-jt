@@ -16,10 +16,11 @@ def get_big_mac_price_by_year(year,country_code):
     
 
 def get_big_mac_price_by_country(country_code):
-    pass
-    #print(df['dollar_price'])
-    #query_2 = f"(iso_a3 == df['dollar_price'])
-    #c_price = df.query(query)
+    query_2 = f"(iso_a3 == '{country_code.upper()}')"
+    c_price = df.query(query_2)
+    dollar_price = (round(c_price['dollar_price'].mean(),2))
+    return dollar_price
+
 
 #These two require indexes
 def get_the_cheapest_big_mac_price_by_year(year):
@@ -30,4 +31,4 @@ def get_the_most_expensive_big_mac_price_by_year(year):
     pass # Remove this line and code your function
 
 if __name__ == "__main__":
-    pass # Remove this line and code your user interface
+    print(get_big_mac_price_by_year(2018,"USA"))
