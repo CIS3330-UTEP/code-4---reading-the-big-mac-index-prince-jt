@@ -27,13 +27,13 @@ def get_the_cheapest_big_mac_price_by_year(year):
     #df.sort_index(axis=1).to_csv('sorted_report.csv', index = False)
     query_3 = f"(date >= '{year}-01-01' and date <= '{year}-12-31')"
     year_result = df.query(query_3)
-    min_query = year_result['dollar_price'].idxmin()
-    cheapest_mac = round(year_result.loc[year_result]['dollar_price'],2)
-    row = year_result[min_query]
+    min_index = year_result['dollar_price'].idxmin()
+    cheapest_mac = round(year_result.loc[min_index]['dollar_price'],2)
+    row = year_result.loc[min_index]
     country = row['name']
     iso_a3 = row['iso_a3']
-    sentence = f"{country}({iso_a3}): ${cheapest_mac}"
-    return sentence
+    return f"{country}({iso_a3}): ${cheapest_mac}"
+
 
 def get_the_most_expensive_big_mac_price_by_year(year):
     query_4 = f"(date >= '{year}-01-01' and date <= '{year}-12-31' )"
@@ -54,3 +54,6 @@ if __name__ == "__main__":
 
     result_2 = get_big_mac_price_by_country(country_code)
     print(f"The mean price of a bigmac was currently ${result_2}")
+
+    result_3 = get_the_cheapest_big_mac_price_by_year(year)
+    print(f"The cheapest bigmac in {year} was in {result_3}")
