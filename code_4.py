@@ -24,11 +24,19 @@ def get_big_mac_price_by_country(country_code):
 
 #These two require indexes
 def get_the_cheapest_big_mac_price_by_year(year):
-    df.sort_index(axis=1).to_csv('sorted_report.csv', index = False)
-    pass # Remove this line and code your function
+    #df.sort_index(axis=1).to_csv('sorted_report.csv', index = False)
+    query_3 = f"(date >= '{year}-01-01' and date <= '{year}-12-31')"
+    year_result = df.query(query_3)
+    min_query = year_result['dollar_price'].idxmin()
+    cheapest_mac = round(year_result.loc[year_result]['dollar_price'],2)
+    row = year_result[min_query]
+    country = row['name']
+    iso_a3 = row['iso_a3']
+    sentence = f"{country}({iso_a3}): ${cheapest_mac}"
+    return sentence
 
 def get_the_most_expensive_big_mac_price_by_year(year):
-    pass # Remove this line and code your function
+    query_4 = f"(date>= '{year}-01-01' and )"
 
 if __name__ == "__main__":
-    print(get_big_mac_price_by_year(2018,"USA"))
+    pass
