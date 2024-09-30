@@ -22,7 +22,7 @@ def get_big_mac_price_by_country(country_code):
     return dollar_price
 
 
-#These two require indexes
+
 def get_the_cheapest_big_mac_price_by_year(year):
     #df.sort_index(axis=1).to_csv('sorted_report.csv', index = False)
     query_3 = f"(date >= '{year}-01-01' and date <= '{year}-12-31')"
